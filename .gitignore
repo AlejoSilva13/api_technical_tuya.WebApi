@@ -1,0 +1,19 @@
+
+# Build directories
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Logs
+*.log
+
+# Configuración local
+appsettings.Development.json
