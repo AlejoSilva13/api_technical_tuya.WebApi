@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\api_technical_tuya.Application\api_technical_tuya.Application.csproj" />
+    <ProjectReference Include="..\api_technical_tuya.Infrastructure\api_technical_tuya.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
