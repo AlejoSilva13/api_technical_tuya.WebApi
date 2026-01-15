@@ -15,27 +15,27 @@ namespace api_technical_tuya.Application.UseCases.Orders.CreateOrder
         private readonly ICustomerRepository _customers;
         private readonly IOrderRepository _orders;
         private readonly IDateTimeProvider _clock;
-        private readonly IUnitOfWork _uow;
+        private readonly IUnitOfWork _unitOfWork;
 
         public CreateOrderHandler(ICustomerRepository customers, IOrderRepository orders, IDateTimeProvider clock, IUnitOfWork uow)
         {
             _customers = customers; 
             _orders = orders; 
-            _clock = clock; 
-            _uow = uow;
+            _clock = clock;
+            _unitOfWork = uow;
         }
 
-        public async Task<CreateOrderResult> HandleCreateAsync(CreateOrderCommand cmd, CancellationToken ct = default)
+        public async Task<CreateOrderResult> HandleCreateAsync(CreateOrderCommand command, CancellationToken cancellationToken = default)
         {
-            if (cmd.CustomerId == Guid.Empty) throw new ArgumentException("CustomerId is required");
-            if (cmd.Total < 0) throw new ArgumentException("Total cannot be negative");
+            if (command.CustomerId == Guid.Empty) throw new ArgumentException("CustomerId is required");
+            if (command.Total < 0) throw new ArgumentException("Total cannot be negative");
 
-            var customer = await _customers.GetByIdAsync(cmd.CustomerId, ct);
+            var customer = await _customers.GetByIdAsync(command.CustomerId, cancellationToken);
             if (customer is null) throw new InvalidOperationException("Customer does not exist");
 
-            var order = new Order(cmd.CustomerId, cmd.Total, _clock.UtcNow);
-            await _orders.AddAsync(order, ct);
-            await _uow.SaveChangesAsync(ct);
+            var order = new Order(command.CustomerId, command.Total, _clock.UtcNow);
+            await _orders.AddAsync(order, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return new CreateOrderResult(order.Id, order.Status);
         }
