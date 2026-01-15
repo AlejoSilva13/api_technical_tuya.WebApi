@@ -5,7 +5,7 @@ API REST para la gestión de **Clientes** y **Órdenes**, desarrollada con .NET 
 ---
 
 ## ✅ Tecnologías utilizadas
-- **.NET 6** (ASP.NET Core Web API)
+- **.NET 6** (Core Web API)
 - **Entity Framework Core** (ORM)
 - **SQL Server** (Base de datos relacional)
 - **FluentValidation** (Validación de datos)
