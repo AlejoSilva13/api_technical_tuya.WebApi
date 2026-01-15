@@ -5,19 +5,19 @@ VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BFF6BD72-9368-4B98-A1D6-824ECFE1A2DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_technical_tuya.WebApi", "api_technical_tuya.WebApi\api_technical_tuya.WebApi.csproj", "{983C4FA6-C56C-4D06-B355-D78FC6677D31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_technical_tuya.WebApi", "api_technical_tuya.WebApi\api_technical_tuya.WebApi.csproj", "{983C4FA6-C56C-4D06-B355-D78FC6677D31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{A1BD607E-A3C4-422B-A35F-75AEA8B21194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_technical_tuya.Application", "api_technical_tuya.Application\api_technical_tuya.Application.csproj", "{21A04E85-1CBB-4167-B6C3-346F348F3AA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_technical_tuya.Application", "api_technical_tuya.Application\api_technical_tuya.Application.csproj", "{21A04E85-1CBB-4167-B6C3-346F348F3AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_technical_tuya.Domain", "api_technical_tuya.Domain\api_technical_tuya.Domain.csproj", "{3462B3BD-D19C-4848-AA41-4EF4D928BD7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_technical_tuya.Domain", "api_technical_tuya.Domain\api_technical_tuya.Domain.csproj", "{3462B3BD-D19C-4848-AA41-4EF4D928BD7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_technical_tuya.Infrastructure", "api_technical_tuya.Infrastructure\api_technical_tuya.Infrastructure.csproj", "{53E51376-883F-4122-AFC8-F382058698A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_technical_tuya.Infrastructure", "api_technical_tuya.Infrastructure\api_technical_tuya.Infrastructure.csproj", "{53E51376-883F-4122-AFC8-F382058698A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{427ED677-AD07-4EF7-8EA4-B1CAA038F6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_technical_tuya.WebApi.Test", "api_technical_tuya.WebApi.Test\api_technical_tuya.WebApi.Test.csproj", "{FC867E8C-2062-4F12-B893-A460B5753AB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_technical_tuya.WebApi.Test", "api_technical_tuya.WebApi.Test\api_technical_tuya.WebApi.Test.csproj", "{FC867E8C-2062-4F12-B893-A460B5753AB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
