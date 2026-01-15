@@ -1,0 +1,23 @@
+
+USE OrdersDb;
+GO
+
+-- Tabla Customers
+CREATE TABLE Customers (
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    Name NVARCHAR(200) NOT NULL,
+    Email NVARCHAR(320) NOT NULL UNIQUE,
+    CreatedAtUtc DATETIME2 NOT NULL
+);
+
+-- Tabla Orders
+CREATE TABLE Orders (
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    CustomerId UNIQUEIDENTIFIER NOT NULL,
+    Total DECIMAL(18,2) NOT NULL,
+    Status NVARCHAR(50) NOT NULL DEFAULT 'Created',
+    CreatedAtUtc DATETIME2 NOT NULL,
+    CONSTRAINT FK_Orders_Customers FOREIGN KEY (CustomerId)
+        REFERENCES Customers(Id)
+        ON DELETE NO ACTION 
+);
