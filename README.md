@@ -27,7 +27,7 @@ Separación clara entre capas para facilitar mantenibilidad y pruebas.
 ## 🚀 Cómo ejecutar el proyecto
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/tuusuario/customer-orders-api.git
+   git clone https://github.com/tuusuario/customer-orders-api.git](https://github.com/AlejoSilva13/api_technical_tuya.WebApi.git
    cd api_technical_test_tuya
    
 2. Configurar la cadena de conexión en appsettings.json
