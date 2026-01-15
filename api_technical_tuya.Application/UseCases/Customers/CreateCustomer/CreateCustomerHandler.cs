@@ -20,7 +20,9 @@ namespace api_technical_tuya.Application.UseCases.Customers.CreateCustomer
 
         public CreateCustomerHandler(ICustomerRepository repo, IDateTimeProvider clock, IUnitOfWork uow)
         {
-            _repo = repo; _clock = clock; _uow = uow;
+            _repo = repo; 
+            _clock = clock;
+            _uow = uow;
         }
 
         public async Task<CustomerDto> HandleAsync(CreateCustomerCommand cmd, CancellationToken ct = default)

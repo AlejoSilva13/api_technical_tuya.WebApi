@@ -1,11 +1,16 @@
+using api_technical_tuya.Application.Interfaces;
 using api_technical_tuya.Application.UseCases.Customer.DeleteCustomer;
 using api_technical_tuya.Application.UseCases.Customer.GetCustomer;
 using api_technical_tuya.Application.UseCases.Customer.UpdateCustomer;
 using api_technical_tuya.Application.UseCases.Customers.CreateCustomer;
 using api_technical_tuya.Application.UseCases.Orders.CreateOrder;
 using api_technical_tuya.Application.UseCases.Orders.GetOrder;
+using api_technical_tuya.Domain.Interfaces;
 using api_technical_tuya.Infrastructure;
+using api_technical_tuya.Infrastructure.Repositories;
+using api_technical_tuya.WebApi.Filters;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +23,9 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped < IUnitOfWork, UnitOfWork>();
 
 
 builder.Services.AddScoped<CreateCustomerHandler>();
@@ -32,7 +40,7 @@ builder.Services.AddScoped < GetOrderHandler>();
 
 
 var app = builder.Build();
-//app.UseMiddleware<GlobalExceptionMiddleware>();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

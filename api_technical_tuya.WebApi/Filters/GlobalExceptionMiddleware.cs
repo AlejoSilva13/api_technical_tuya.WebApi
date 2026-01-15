@@ -28,7 +28,8 @@ namespace api_technical_tuya.WebApi.Filters
             catch (InvalidOperationException ex)
             {
                 _logger.LogWarning(ex, "Business rule error");
-                ctx.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ctx.Response.StatusCode = (int)HttpStatusCode.NotFound; 
+                ctx.Response.ContentType = "application/json";
                 await ctx.Response.WriteAsync(JsonSerializer.Serialize(new { error = ex.Message }));
             }
             catch (Exception ex)
