@@ -22,6 +22,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{CB42D48B-9F93-4A1F-8B21-56B21ABAC4F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{5B21D4D9-7DC2-4BE1-99DD-C2F549B4373E}"
+	ProjectSection(SolutionItems) = preProject
+		create-database.sql = create-database.sql
+		create-tables.sql = create-tables.sql
+		update-fk-orders-customers.sql = update-fk-orders-customers.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
