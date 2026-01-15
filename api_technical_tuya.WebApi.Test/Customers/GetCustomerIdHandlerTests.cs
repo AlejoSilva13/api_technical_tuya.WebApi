@@ -22,7 +22,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
 
             var handler = new GetCustomerIdHandler(repoMock.Object);
 
-            var result = await handler.HandleAsync(new GetCustomerByIdQuery(customer.Id));
+            var result = await handler.HandleGetIdAsync(new GetCustomerByIdQuery(customer.Id));
 
             Assert.Equal(customer.Id, result.Id);
         }
@@ -36,7 +36,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
             var handler = new GetCustomerIdHandler(repoMock.Object);
 
             await Assert.ThrowsAsync<InvalidOperationException>(() =>
-                handler.HandleAsync(new GetCustomerByIdQuery(Guid.NewGuid())));
+                handler.HandleGetIdAsync(new GetCustomerByIdQuery(Guid.NewGuid())));
         }
     }
 }

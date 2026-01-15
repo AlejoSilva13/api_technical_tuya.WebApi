@@ -25,7 +25,7 @@ namespace api_technical_tuya.Application.UseCases.Orders.CreateOrder
             _uow = uow;
         }
 
-        public async Task<CreateOrderResult> HandleAsync(CreateOrderCommand cmd, CancellationToken ct = default)
+        public async Task<CreateOrderResult> HandleCreateAsync(CreateOrderCommand cmd, CancellationToken ct = default)
         {
             if (cmd.CustomerId == Guid.Empty) throw new ArgumentException("CustomerId is required");
             if (cmd.Total < 0) throw new ArgumentException("Total cannot be negative");

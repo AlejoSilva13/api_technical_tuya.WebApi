@@ -21,7 +21,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
             var handler = new CreateCustomerHandler(repoMock.Object, clockMock.Object, uowMock.Object);
             var cmd = new CreateCustomerCommand("Diego", "diego@example.com");
 
-            var result = await handler.HandleAsync(cmd);
+            var result = await handler.HandleCreateAsync(cmd);
 
             Assert.Equal(cmd.Name, result.Name);
             Assert.Equal(cmd.Email.ToLowerInvariant(), result.Email);
@@ -39,7 +39,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
 
             var cmd = new CreateCustomerCommand("", "diego@example.com");
 
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(cmd));
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleCreateAsync(cmd));
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
 
             var cmd = new CreateCustomerCommand("Diego", "");
 
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(cmd));
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleCreateAsync(cmd));
         }
     }
 

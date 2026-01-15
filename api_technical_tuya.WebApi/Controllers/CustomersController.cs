@@ -18,7 +18,7 @@ namespace api_technical_tuya.WebApi.Controllers
             [FromServices] GetAllCustomersHandler handler,
             CancellationToken ct)
         {
-            var result = await handler.HandleAsync(new GetAllCustomersQuery(), ct);
+            var result = await handler.HandleGetAllAsync(new GetAllCustomersQuery(), ct);
             return Ok(result);
         }
 
@@ -28,7 +28,7 @@ namespace api_technical_tuya.WebApi.Controllers
             [FromServices] GetCustomerIdHandler handler,
             CancellationToken ct)
         {
-            var result = await handler.HandleAsync(new GetCustomerByIdQuery(id), ct);
+            var result = await handler.HandleGetIdAsync(new GetCustomerByIdQuery(id), ct);
             return Ok(result);
         }
 
@@ -40,7 +40,7 @@ namespace api_technical_tuya.WebApi.Controllers
             [FromServices] CreateCustomerHandler handler,
             CancellationToken ct)
         {
-            var created = await handler.HandleAsync(new CreateCustomerCommand(req.Name, req.Email), ct);
+            var created = await handler.HandleCreateAsync(new CreateCustomerCommand(req.Name, req.Email), ct);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
@@ -53,7 +53,7 @@ namespace api_technical_tuya.WebApi.Controllers
             [FromServices] UpdateCustomerHandler handler,
             CancellationToken ct)
         {
-            var updated = await handler.HandleAsync(new UpdateCustomerCommand(id, req.Name, req.Email), ct);
+            var updated = await handler.HandleUpdateAsync(new UpdateCustomerCommand(id, req.Name, req.Email), ct);
             return Ok(updated);
         }
 
@@ -63,7 +63,7 @@ namespace api_technical_tuya.WebApi.Controllers
             [FromServices] DeleteCustomerHandler handler,
             CancellationToken ct)
         {
-            await handler.HandleAsync(new DeleteCustomerCommand(id), ct);
+            await handler.HandleDeleteAsync(new DeleteCustomerCommand(id), ct);
             return NoContent();
         }
     }

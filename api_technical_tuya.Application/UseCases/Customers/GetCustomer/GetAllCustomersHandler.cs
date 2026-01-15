@@ -14,7 +14,7 @@ namespace api_technical_tuya.Application.UseCases.Customer.GetCustomer
         private readonly ICustomerRepository _repo;
         public GetAllCustomersHandler(ICustomerRepository repo) => _repo = repo;
 
-        public async Task<IReadOnlyList<CustomerDto>> HandleAsync(GetAllCustomersQuery getCustomer, CancellationToken ct = default)
+        public async Task<IReadOnlyList<CustomerDto>> HandleGetAllAsync(GetAllCustomersQuery getCustomer, CancellationToken ct = default)
         {
             var list = await _repo.GetAllAsync(ct);
             return list.Select(x => new CustomerDto(x.Id, x.Name, x.Email, x.CreatedAtUtc)).ToList();

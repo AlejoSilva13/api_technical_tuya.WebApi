@@ -25,7 +25,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
 
             var handler = new GetAllCustomersHandler(repoMock.Object);
 
-            var result = await handler.HandleAsync(new GetAllCustomersQuery());
+            var result = await handler.HandleGetAllAsync(new GetAllCustomersQuery());
 
             Assert.Single(result);
             Assert.Equal("Diego", result[0].Name);

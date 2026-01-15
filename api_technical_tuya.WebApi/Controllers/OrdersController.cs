@@ -17,7 +17,7 @@ namespace api_technical_tuya.WebApi.Controllers
             [FromServices] CreateOrderHandler handler,
             CancellationToken ct)
         {
-            var result = await handler.HandleAsync(new CreateOrderCommand(req.CustomerId, req.Total), ct);
+            var result = await handler.HandleCreateAsync(new CreateOrderCommand(req.CustomerId, req.Total), ct);
             return CreatedAtAction(nameof(GetById), new { id = result.OrderId }, result);
         }
 

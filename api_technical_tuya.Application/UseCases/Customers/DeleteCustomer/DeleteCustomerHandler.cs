@@ -20,7 +20,7 @@ namespace api_technical_tuya.Application.UseCases.Customer.DeleteCustomer
             _uow = uow;
         }
 
-        public async Task HandleAsync(DeleteCustomerCommand cmd, CancellationToken ct = default)
+        public async Task HandleDeleteAsync(DeleteCustomerCommand cmd, CancellationToken ct = default)
         {
             await _repo.DeleteAsync(cmd.Id, ct);
             await _uow.SaveChangesAsync(ct);

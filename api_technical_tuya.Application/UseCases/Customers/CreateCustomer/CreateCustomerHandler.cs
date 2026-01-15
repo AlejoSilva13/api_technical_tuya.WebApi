@@ -25,7 +25,7 @@ namespace api_technical_tuya.Application.UseCases.Customers.CreateCustomer
             _uow = uow;
         }
 
-        public async Task<CustomerDto> HandleAsync(CreateCustomerCommand cmd, CancellationToken ct = default)
+        public async Task<CustomerDto> HandleCreateAsync(CreateCustomerCommand cmd, CancellationToken ct = default)
         {
             if (string.IsNullOrWhiteSpace(cmd.Name)) throw new ArgumentException("Name is required");
             if (string.IsNullOrWhiteSpace(cmd.Email)) throw new ArgumentException("Email is required");

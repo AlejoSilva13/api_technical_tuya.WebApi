@@ -13,7 +13,7 @@ namespace api_technical_tuya.Application.UseCases.Customer.GetCustomer
         private readonly ICustomerRepository _repo;
         public GetCustomerIdHandler(ICustomerRepository repo) => _repo = repo;
 
-        public async Task<CustomerDto> HandleAsync(GetCustomerByIdQuery query, CancellationToken ct = default)
+        public async Task<CustomerDto> HandleGetIdAsync(GetCustomerByIdQuery query, CancellationToken ct = default)
         {
             var c = await _repo.GetByIdAsync(query.Id, ct) ?? throw new InvalidOperationException("Customer not found");
             return new CustomerDto(c.Id, c.Name, c.Email, c.CreatedAtUtc);

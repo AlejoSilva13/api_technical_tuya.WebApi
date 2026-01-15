@@ -21,7 +21,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
             var handler = new DeleteCustomerHandler(repoMock.Object, uowMock.Object);
             var cmd = new DeleteCustomerCommand(Guid.NewGuid());
 
-            await handler.HandleAsync(cmd);
+            await handler.HandleDeleteAsync(cmd);
 
             repoMock.Verify(r => r.DeleteAsync(cmd.Id, default), Times.Once);
             uowMock.Verify(u => u.SaveChangesAsync(default), Times.Once);

@@ -26,7 +26,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
             var handler = new UpdateCustomerHandler(repoMock.Object, uowMock.Object);
             var cmd = new UpdateCustomerCommand(customer.Id, "NewName", "new@example.com");
 
-            var result = await handler.HandleAsync(cmd);
+            var result = await handler.HandleUpdateAsync(cmd);
 
             Assert.Equal("NewName", result.Name);
             Assert.Equal("new@example.com", result.Email);
@@ -43,7 +43,7 @@ namespace api_technical_tuya.WebApi.Test.Customers
             var handler = new UpdateCustomerHandler(repoMock.Object, new Mock<IUnitOfWork>().Object);
             var cmd = new UpdateCustomerCommand(Guid.NewGuid(), "Name", "email@example.com");
 
-            await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleAsync(cmd));
+            await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleUpdateAsync(cmd));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace api_technical_tuya.Application.UseCases.Customer.UpdateCustomer
             _uow = uow;
         }
 
-        public async Task<CustomerDto> HandleAsync(UpdateCustomerCommand cmd, CancellationToken ct = default)
+        public async Task<CustomerDto> HandleUpdateAsync(UpdateCustomerCommand cmd, CancellationToken ct = default)
         {
             var customer = await _repo.GetByIdAsync(cmd.Id, ct) ?? throw new InvalidOperationException("Customer not found");
             customer.Update(cmd.Name, cmd.Email);

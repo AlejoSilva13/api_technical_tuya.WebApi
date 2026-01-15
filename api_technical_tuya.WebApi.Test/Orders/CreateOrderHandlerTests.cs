@@ -30,7 +30,7 @@ namespace api_technical_tuya.WebApi.Test.Orders
             var handler = new CreateOrderHandler(customerRepoMock.Object, orderRepoMock.Object, clockMock.Object, uowMock.Object);
             var cmd = new CreateOrderCommand(customerId, 100m);
 
-            var result = await handler.HandleAsync(cmd);
+            var result = await handler.HandleCreateAsync(cmd);
 
             Assert.Equal("Created", result.Status);
             orderRepoMock.Verify(r => r.AddAsync(It.IsAny<Order>(), default), Times.Once);
@@ -46,7 +46,7 @@ namespace api_technical_tuya.WebApi.Test.Orders
             var handler = new CreateOrderHandler(customerRepoMock.Object, new Mock<IOrderRepository>().Object, new Mock<IDateTimeProvider>().Object, new Mock<IUnitOfWork>().Object);
             var cmd = new CreateOrderCommand(Guid.NewGuid(), 100m);
 
-            await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleAsync(cmd));
+            await Assert.ThrowsAsync<InvalidOperationException>(() => handler.HandleCreateAsync(cmd));
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace api_technical_tuya.WebApi.Test.Orders
             var handler = new CreateOrderHandler(new Mock<ICustomerRepository>().Object, new Mock<IOrderRepository>().Object, new Mock<IDateTimeProvider>().Object, new Mock<IUnitOfWork>().Object);
             var cmd = new CreateOrderCommand(Guid.NewGuid(), -10m);
 
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleAsync(cmd));
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.HandleCreateAsync(cmd));
         }
     }
 }

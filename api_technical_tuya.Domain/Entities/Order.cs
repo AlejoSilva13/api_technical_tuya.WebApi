@@ -26,10 +26,5 @@ namespace api_technical_tuya.Domain.Entities
             Total = total;
             CreatedAtUtc = createdAtUtc;
         }
-
-        public void Cancel()
-        {
-            if (Status != "Cancelled") Status = "Cancelled";
-        }
     }
 }
