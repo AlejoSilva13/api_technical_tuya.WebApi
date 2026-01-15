@@ -49,15 +49,32 @@ Respuestas claras (400, 404, 409, 500)
 Integración con SQL Server
 Pruebas unitarias e integración con xUnit
 
-📂 Estructura del proyecto
+## 📂 Estructura del proyecto
 
- src/
-├── Presentacion/        # Controladores, Validadores, Middleware
+
+src/
+├── Presentacion/        # API: Controladores, Validadores, Middleware
+│   ├── Controllers/     # Endpoints REST (Customers, Orders)
+│   ├── Validators/      # FluentValidation (manual en controladores)
+│   └── Filters/         # Middleware global de excepciones
+│
 ├── Application/         # Casos de uso (Handlers, Commands, Queries)
+│   ├── Dtos/            # DTOs para salida
+│   ├── Interfaces/      # Abstracciones (Repos, UoW, DateTimeProvider)
+│   └── UseCases/        # Lógica de aplicación (Handlers)
+│
 ├── Domain/              # Entidades y lógica de negocio
-├── Infrastructure/      # Persistencia, Repositorios, Configuración BD
+│   └── Entities/        # Customer, Order (invariantes y reglas)
+│
+├── Infrastructure/      # Persistencia, Repositorios, Configuración EF Core
+│   ├── Configurations/  # Mapeo EF Core (Customer, Order)
+│   ├── Persistence/     # DbContext
+│   ├── Repositories/    # Implementación de repositorios
+│   ├── Services/        # Servicios transversales (DateTimeProvider)
+│   └── DependencyInjection.cs
+│
 tests/
-├── UnitTests/           # Pruebas unitarias
-├── IntegrationTests/    # Pruebas de integración
+├── UnitTests/           # Pruebas unitarias (Handlers, Validadores)
+└── IntegrationTests/    # Pruebas de integración (API + BD)
 
 
