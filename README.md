@@ -13,6 +13,23 @@ API REST para la gestión de **Clientes** y **Órdenes**, desarrollada con .NET 
 - **xUnit** (Pruebas unitarias e integración)
 
 ---
+## 🗄️ Scripts de Base de Datos
+
+Para preparar la base de datos en SQL Server, utiliza los scripts incluidos en la carpeta scripts/database/:
+
+- create-database.sql
+- create-tables.sql
+- update-fk-orders-customers.sql
+
+*Cómo ejecutarlos:*
+
+Abre SQL Server Management Studio (SSMS).
+Ejecuta los scripts en orden:
+
+- create-database.sql
+- create-tables.sql
+- (Opcional) update-fk-orders-customers.sql
+---
 
 ## 🏗️ Arquitectura
 - **Presentación**: Controladores API + Validadores (FluentValidation)
@@ -22,6 +39,14 @@ API REST para la gestión de **Clientes** y **Órdenes**, desarrollada con .NET 
 
 Separación clara entre capas para facilitar mantenibilidad y pruebas.
 
+---
+## ⚙️ Archivos de Configuración (JSON)
+
+Estos archivos permiten configurar la API sin modificar el código:
+
+- appsettings.json
+- appsettings.Development.json (Configuración especifica para desarrollo)
+- launchSettings.json (en Properties/)
 ---
 
 ## 🚀 Cómo ejecutar el proyecto
@@ -52,29 +77,5 @@ Pruebas unitarias e integración con xUnit
 ## 📂 Estructura del proyecto
 
 
-src/
-├── Presentacion/        # API: Controladores, Validadores, Middleware
-│   ├── Controllers/     # Endpoints REST (Customers, Orders)
-│   ├── Validators/      # FluentValidation (manual en controladores)
-│   └── Filters/         # Middleware global de excepciones
-│
-├── Application/         # Casos de uso (Handlers, Commands, Queries)
-│   ├── Dtos/            # DTOs para salida
-│   ├── Interfaces/      # Abstracciones (Repos, UoW, DateTimeProvider)
-│   └── UseCases/        # Lógica de aplicación (Handlers)
-│
-├── Domain/              # Entidades y lógica de negocio
-│   └── Entities/        # Customer, Order (invariantes y reglas)
-│
-├── Infrastructure/      # Persistencia, Repositorios, Configuración EF Core
-│   ├── Configurations/  # Mapeo EF Core (Customer, Order)
-│   ├── Persistence/     # DbContext
-│   ├── Repositories/    # Implementación de repositorios
-│   ├── Services/        # Servicios transversales (DateTimeProvider)
-│   └── DependencyInjection.cs
-│
-tests/
-├── UnitTests/           # Pruebas unitarias (Handlers, Validadores)
-└── IntegrationTests/    # Pruebas de integración (API + BD)
 
 
