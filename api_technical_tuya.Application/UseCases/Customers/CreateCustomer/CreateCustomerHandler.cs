@@ -14,25 +14,25 @@ namespace api_technical_tuya.Application.UseCases.Customers.CreateCustomer
 {
     public sealed class CreateCustomerHandler
     {
-        private readonly ICustomerRepository _repo;
+        private readonly ICustomerRepository _repository;
         private readonly IDateTimeProvider _clock;
-        private readonly IUnitOfWork _uow;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateCustomerHandler(ICustomerRepository repo, IDateTimeProvider clock, IUnitOfWork uow)
+        public CreateCustomerHandler(ICustomerRepository repository, IDateTimeProvider clock, IUnitOfWork unitOfWork)
         {
-            _repo = repo; 
+            _repository = repository; 
             _clock = clock;
-            _uow = uow;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task<CustomerDto> HandleCreateAsync(CreateCustomerCommand cmd, CancellationToken ct = default)
+        public async Task<CustomerDto> HandleCreateAsync(CreateCustomerCommand command, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrWhiteSpace(cmd.Name)) throw new ArgumentException("Name is required");
-            if (string.IsNullOrWhiteSpace(cmd.Email)) throw new ArgumentException("Email is required");
+            if (string.IsNullOrWhiteSpace(command.Name)) throw new ArgumentException("Name is required");
+            if (string.IsNullOrWhiteSpace(command.Email)) throw new ArgumentException("Email is required");
 
-            var customer = new DomainCustomer(Guid.Empty, cmd.Name, cmd.Email, _clock.UtcNow);
-            await _repo.AddAsync(customer, ct);
-            await _uow.SaveChangesAsync(ct);
+            var customer = new DomainCustomer(Guid.Empty, command.Name, command.Email, _clock.UtcNow);
+            await _repository.AddAsync(customer, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return new CustomerDto(customer.Id, customer.Name, customer.Email, customer.CreatedAtUtc);
         }

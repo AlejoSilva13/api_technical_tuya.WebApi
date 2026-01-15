@@ -11,21 +11,21 @@ namespace api_technical_tuya.Application.UseCases.Customer.UpdateCustomer
 {
     public sealed class UpdateCustomerHandler
     {
-        private readonly ICustomerRepository _repo;
-        private readonly IUnitOfWork _uow;
+        private readonly ICustomerRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateCustomerHandler(ICustomerRepository repo, IUnitOfWork uow)
+        public UpdateCustomerHandler(ICustomerRepository repository, IUnitOfWork unitOfWork)
         {
-            _repo = repo;
-            _uow = uow;
+            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task<CustomerDto> HandleUpdateAsync(UpdateCustomerCommand cmd, CancellationToken ct = default)
+        public async Task<CustomerDto> HandleUpdateAsync(UpdateCustomerCommand command, CancellationToken cancellationToken = default)
         {
-            var customer = await _repo.GetByIdAsync(cmd.Id, ct) ?? throw new InvalidOperationException("Customer not found");
-            customer.Update(cmd.Name, cmd.Email);
-            await _repo.UpdateAsync(customer, ct);
-            await _uow.SaveChangesAsync(ct);
+            var customer = await _repository.GetByIdAsync(command.Id, cancellationToken) ?? throw new InvalidOperationException("Customer not found");
+            customer.Update(command.Name, command.Email);
+            await _repository.UpdateAsync(customer, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return new CustomerDto(customer.Id, customer.Name, customer.Email, customer.CreatedAtUtc);
         }

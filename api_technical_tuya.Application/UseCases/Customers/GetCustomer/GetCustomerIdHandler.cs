@@ -10,13 +10,13 @@ namespace api_technical_tuya.Application.UseCases.Customer.GetCustomer
 {
     public sealed class GetCustomerIdHandler
     {
-        private readonly ICustomerRepository _repo;
-        public GetCustomerIdHandler(ICustomerRepository repo) => _repo = repo;
+        private readonly ICustomerRepository _repository;
+        public GetCustomerIdHandler(ICustomerRepository repo) => _repository = repo;
 
-        public async Task<CustomerDto> HandleGetIdAsync(GetCustomerByIdQuery query, CancellationToken ct = default)
+        public async Task<CustomerDto> HandleGetIdAsync(GetCustomerByIdQuery query, CancellationToken cancellationToken = default)
         {
-            var c = await _repo.GetByIdAsync(query.Id, ct) ?? throw new InvalidOperationException("Customer not found");
-            return new CustomerDto(c.Id, c.Name, c.Email, c.CreatedAtUtc);
+            var list = await _repository.GetByIdAsync(query.Id, cancellationToken) ?? throw new InvalidOperationException("Customer not found");
+            return new CustomerDto(list.Id, list.Name, list.Email, list.CreatedAtUtc);
         }
     }
 }

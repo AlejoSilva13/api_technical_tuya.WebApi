@@ -11,12 +11,12 @@ namespace api_technical_tuya.Application.UseCases.Customer.GetCustomer
 
     public sealed class GetAllCustomersHandler
     {
-        private readonly ICustomerRepository _repo;
-        public GetAllCustomersHandler(ICustomerRepository repo) => _repo = repo;
+        private readonly ICustomerRepository _repository;
+        public GetAllCustomersHandler(ICustomerRepository repo) => _repository = repo;
 
-        public async Task<IReadOnlyList<CustomerDto>> HandleGetAllAsync(GetAllCustomersQuery getCustomer, CancellationToken ct = default)
+        public async Task<IReadOnlyList<CustomerDto>> HandleGetAllAsync(GetAllCustomersQuery getCustomer, CancellationToken cancellationToken = default)
         {
-            var list = await _repo.GetAllAsync(ct);
+            var list = await _repository.GetAllAsync(cancellationToken);
             return list.Select(x => new CustomerDto(x.Id, x.Name, x.Email, x.CreatedAtUtc)).ToList();
         }
     }

@@ -16,9 +16,9 @@ namespace api_technical_tuya.Application.UseCases.Orders.GetOrder
         public GetOrderHandler(IOrderRepository orders)
             => _orders = orders;
 
-        public async Task<OrderDto> HandleAsync(GetOrderIdCommand query, CancellationToken ct = default)
+        public async Task<OrderDto> HandleAsync(GetOrderIdCommand query, CancellationToken cancellationToken = default)
         {
-            var order = await _orders.GetByIdAsync(query.Id, ct)
+            var order = await _orders.GetByIdAsync(query.Id, cancellationToken)
                 ?? throw new InvalidOperationException("Order not found");
 
             return new OrderDto(order.Id, order.CustomerId, order.Total, order.Status, order.CreatedAtUtc);
