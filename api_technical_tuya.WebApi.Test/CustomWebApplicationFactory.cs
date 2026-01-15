@@ -19,16 +19,13 @@ namespace api_technical_tuya.WebApi.Test
         {
             builder.ConfigureServices(services =>
             {
-                // Elimina el DbContext original
                 var descriptor = services.SingleOrDefault(
                     d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
                 if (descriptor is not null) services.Remove(descriptor);
 
-                // Agrega DbContext InMemory con nombre único
                 services.AddDbContext<AppDbContext>(options =>
                     options.UseInMemoryDatabase($"TestDb_{Guid.NewGuid()}"));
 
-                // Inicializa la base de datos
                 var sp = services.BuildServiceProvider();
                 using var scope = sp.CreateScope();
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
