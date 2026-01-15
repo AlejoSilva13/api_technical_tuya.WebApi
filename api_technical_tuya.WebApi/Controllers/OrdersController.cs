@@ -1,4 +1,6 @@
-﻿using api_technical_tuya.Application.UseCases.Orders.CreateOrder;
+﻿using api_technical_tuya.Application.Dtos;
+using api_technical_tuya.Application.UseCases.Orders.CreateOrder;
+using api_technical_tuya.Application.UseCases.Orders.GetOrder;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_technical_tuya.WebApi.Controllers
@@ -20,12 +22,15 @@ namespace api_technical_tuya.WebApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.OrderId }, result);
         }
 
+
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult> GetById(
+        public async Task<ActionResult<OrderDto>> GetById(
             Guid id,
-            CancellationToken _)
+            [FromServices] GetOrderHandler handler,
+            CancellationToken ct)
         {
-            return StatusCode(StatusCodes.Status501NotImplemented);
+            var dto = await handler.HandleAsync(new GetOrderIdCommand(id), ct);
+            return Ok(dto);
         }
     }
 }

@@ -3,6 +3,7 @@ using api_technical_tuya.Application.UseCases.Customer.GetCustomer;
 using api_technical_tuya.Application.UseCases.Customer.UpdateCustomer;
 using api_technical_tuya.Application.UseCases.Customers.CreateCustomer;
 using api_technical_tuya.Application.UseCases.Orders.CreateOrder;
+using api_technical_tuya.Application.UseCases.Orders.GetOrder;
 using api_technical_tuya.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,16 +17,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-// Infrastructure(DbContext, repos, uow, clock)
 builder.Services.AddInfrastructure(builder.Configuration);
 
-// Application handlers (si usas inyección directa de handlers)
+
 builder.Services.AddScoped<CreateCustomerHandler>();
 builder.Services.AddScoped<UpdateCustomerHandler>();
 builder.Services.AddScoped<DeleteCustomerHandler>();
 builder.Services.AddScoped<GetAllCustomersHandler>();
 builder.Services.AddScoped<GetCustomerIdHandler>();
 builder.Services.AddScoped<CreateOrderHandler>();
+builder.Services.AddScoped<CreateOrderHandler>();
+builder.Services.AddScoped < GetOrderHandler>();
+
 
 
 var app = builder.Build();
