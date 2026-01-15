@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api_technical_tuya.WebApi.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public sealed class OrdersController : ControllerBase
@@ -21,7 +20,6 @@ namespace api_technical_tuya.WebApi.Controllers
             var result = await handler.HandleAsync(new CreateOrderCommand(req.CustomerId, req.Total), ct);
             return CreatedAtAction(nameof(GetById), new { id = result.OrderId }, result);
         }
-
 
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<OrderDto>> GetById(

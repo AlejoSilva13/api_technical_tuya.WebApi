@@ -5,10 +5,10 @@ using api_technical_tuya.Application.UseCases.Customer.GetCustomer;
 using api_technical_tuya.Application.UseCases.Customer.UpdateCustomer;
 using api_technical_tuya.Application.UseCases.Customers.CreateCustomer;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace api_technical_tuya.WebApi.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public sealed class CustomersController : ControllerBase

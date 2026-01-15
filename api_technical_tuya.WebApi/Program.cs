@@ -9,6 +9,8 @@ using api_technical_tuya.Domain.Interfaces;
 using api_technical_tuya.Infrastructure;
 using api_technical_tuya.Infrastructure.Repositories;
 using api_technical_tuya.WebApi.Filters;
+using api_technical_tuya.WebApi.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -16,7 +18,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateCustomerRequestValidator>());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
