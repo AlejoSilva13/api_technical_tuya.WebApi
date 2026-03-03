@@ -23,12 +23,13 @@ namespace api_technical_tuya.WebApi.Filters
             {
                 _logger.LogWarning(ex, "Validation error");
                 ctx.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ctx.Response.ContentType = "application/json";
                 await ctx.Response.WriteAsync(JsonSerializer.Serialize(new { error = ex.Message }));
             }
             catch (InvalidOperationException ex)
             {
                 _logger.LogWarning(ex, "Business rule error");
-                ctx.Response.StatusCode = (int)HttpStatusCode.NotFound; 
+                ctx.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 ctx.Response.ContentType = "application/json";
                 await ctx.Response.WriteAsync(JsonSerializer.Serialize(new { error = ex.Message }));
             }
@@ -36,6 +37,7 @@ namespace api_technical_tuya.WebApi.Filters
             {
                 _logger.LogError(ex, "Unhandled error");
                 ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                ctx.Response.ContentType = "application/json";
                 await ctx.Response.WriteAsync(JsonSerializer.Serialize(new { error = "Unexpected error" }));
             }
         }

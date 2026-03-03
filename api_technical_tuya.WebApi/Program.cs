@@ -27,10 +27,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped < IUnitOfWork, UnitOfWork>();
-
-
 builder.Services.AddScoped<CreateCustomerHandler>();
 builder.Services.AddScoped<UpdateCustomerHandler>();
 builder.Services.AddScoped<DeleteCustomerHandler>();

@@ -21,7 +21,16 @@ namespace api_technical_tuya.Infrastructure
             var cs = config.GetConnectionString("SqlServer")
                      ?? throw new InvalidOperationException("Missing connection string 'SqlServer'");
 
-            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(cs));
+
+            services.AddDbContext<AppDbContext>(opt =>
+                opt.UseSqlServer(cs, sql =>
+                {
+                    sql.CommandTimeout(60); // segs
+                    sql.EnableRetryOnFailure(
+                        maxRetryCount: 5,
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorNumbersToAdd: null);
+                }));
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
