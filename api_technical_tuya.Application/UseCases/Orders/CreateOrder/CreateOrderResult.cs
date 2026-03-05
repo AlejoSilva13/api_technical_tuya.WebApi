@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace api_technical_tuya.Application.UseCases.Orders.CreateOrder
 {
-    public sealed record CreateOrderResult(Guid OrderId, string Status);
+    public sealed record CreateOrderResult(Guid OrderId, Guid CustomerId, decimal Total, string Status, DateTime CreatedAtUtc);
 }

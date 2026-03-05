@@ -1,6 +1,7 @@
 ﻿using api_technical_tuya.Application.Dtos;
 using api_technical_tuya.Application.UseCases.Orders.CreateOrder;
 using api_technical_tuya.Application.UseCases.Orders.GetOrder;
+using api_technical_tuya.Application.UseCases.Orders.GetAllOrders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_technical_tuya.WebApi.Controllers
@@ -10,6 +11,15 @@ namespace api_technical_tuya.WebApi.Controllers
     public sealed class OrdersController : ControllerBase
     {
         public sealed record CreateOrderRequest(Guid CustomerId, decimal Total);
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetAll(
+            [FromServices] GetAllOrdersHandler handler,
+            CancellationToken ct)
+        {
+            var result = await handler.HandleAsync(new GetAllOrdersQuery(), ct);
+            return Ok(result);
+        }
 
         [HttpPost]
         public async Task<ActionResult> Create(

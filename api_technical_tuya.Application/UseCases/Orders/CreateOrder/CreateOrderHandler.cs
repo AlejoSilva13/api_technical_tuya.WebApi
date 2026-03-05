@@ -37,7 +37,7 @@ namespace api_technical_tuya.Application.UseCases.Orders.CreateOrder
             await _orders.AddAsync(order, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new CreateOrderResult(order.Id, order.Status);
+            return new CreateOrderResult(order.Id, order.CustomerId, order.Total, order.Status, order.CreatedAtUtc);
         }
     }
 

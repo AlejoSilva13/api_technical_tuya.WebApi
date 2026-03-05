@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace api_technical_tuya.Application.Dtos
 {
-    public sealed record CustomerDto(Guid Id, string Name, string Email, DateTime CreatedAtutc);
+    public sealed record CustomerDto(Guid Id, string Name, string Email, DateTime CreatedAtUtc);
 }
