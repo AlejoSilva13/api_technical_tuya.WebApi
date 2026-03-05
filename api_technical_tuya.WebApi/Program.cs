@@ -5,6 +5,7 @@ using api_technical_tuya.Application.UseCases.Customer.UpdateCustomer;
 using api_technical_tuya.Application.UseCases.Customers.CreateCustomer;
 using api_technical_tuya.Application.UseCases.Orders.CreateOrder;
 using api_technical_tuya.Application.UseCases.Orders.GetOrder;
+using api_technical_tuya.Application.UseCases.Orders.GetAllOrders;
 using api_technical_tuya.Domain.Interfaces;
 using api_technical_tuya.Infrastructure;
 using api_technical_tuya.Infrastructure.Repositories;
@@ -33,8 +34,8 @@ builder.Services.AddScoped<DeleteCustomerHandler>();
 builder.Services.AddScoped<GetAllCustomersHandler>();
 builder.Services.AddScoped<GetCustomerIdHandler>();
 builder.Services.AddScoped<CreateOrderHandler>();
-builder.Services.AddScoped<CreateOrderHandler>();
-builder.Services.AddScoped < GetOrderHandler>();
+builder.Services.AddScoped<GetAllOrdersHandler>();
+builder.Services.AddScoped<GetOrderHandler>();
 
 
 

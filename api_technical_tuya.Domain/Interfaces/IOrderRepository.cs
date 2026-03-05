@@ -9,6 +9,7 @@ namespace api_technical_tuya.Domain.Interfaces
 {
     public interface IOrderRepository
     {
+        Task<IReadOnlyList<Order>> GetAllAsync(CancellationToken ct = default);
         Task<Order?> GetByIdAsync(Guid id, CancellationToken ct = default);
         Task AddAsync(Order order, CancellationToken ct = default);
     }

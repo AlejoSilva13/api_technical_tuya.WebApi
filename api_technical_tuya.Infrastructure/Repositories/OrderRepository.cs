@@ -15,6 +15,9 @@ namespace api_technical_tuya.Infrastructure.Repositories
         private readonly AppDbContext _db;
         public OrderRepository(AppDbContext db) => _db = db;
 
+        public async Task<IReadOnlyList<Order>> GetAllAsync(CancellationToken ct = default)
+            => await _db.Orders.AsNoTracking().OrderByDescending(o => o.CreatedAtUtc).ToListAsync(ct);
+
         public async Task<Order?> GetByIdAsync(Guid id, CancellationToken ct = default)
             => await _db.Orders.AsNoTracking().FirstOrDefaultAsync(o => o.Id == id, ct);
 
